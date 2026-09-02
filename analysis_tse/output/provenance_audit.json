@@ -1,0 +1,1774 @@
+{
+  "claim_eligible": false,
+  "comparable_size_rows": 198,
+  "conclusion": "The current ddmin repair file is not claim-eligible: its recorded reduced sizes align predominantly with ReduceFix artifacts rather than ddmin artifacts.",
+  "ddmin_repair_size_matches_ddmin": 3,
+  "ddmin_repair_size_matches_neither": 10,
+  "ddmin_repair_size_matches_reducefix": 188,
+  "ddmin_repair_status_200": 200,
+  "ddmin_success": 71,
+  "mismatch_rows": [
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "66704499",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "66894391",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 23,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 23,
+      "submission": "67026479",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67030359",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": 7,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67095547",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": 7,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67095560",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67107765",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67182020",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67186860",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 6903,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6903,
+      "submission": "67213592",
+      "task": "abc361c"
+    },
+    {
+      "ddmin_repair_size": 24,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 24,
+      "submission": "65947516",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 75,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 75,
+      "submission": "66246685",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 24,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 24,
+      "submission": "66485717",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 24,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 24,
+      "submission": "66485778",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 24,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 24,
+      "submission": "66485839",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 24,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 24,
+      "submission": "66824420",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 23,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 23,
+      "submission": "66901765",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "66901805",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 76,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 76,
+      "submission": "67055151",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 24,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 24,
+      "submission": "67088863",
+      "task": "abc362d"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": 15,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "66451062",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": 15,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "66451108",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": 15,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "66698060",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": 7,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "66867492",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 5833173,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "66879782",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 16,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 16,
+      "submission": "66903440",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 16,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 16,
+      "submission": "66903504",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 18,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 18,
+      "submission": "67012798",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": 7,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "67112907",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": 7,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "67112937",
+      "task": "abc363e"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "65154236",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "65154375",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "65154395",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "65154456",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "65154558",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "66684578",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "66684832",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "66687736",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 29,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 29,
+      "submission": "66949397",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 224017,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 224017,
+      "submission": "67175419",
+      "task": "abc364d"
+    },
+    {
+      "ddmin_repair_size": 6,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6,
+      "submission": "66993696",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 6,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6,
+      "submission": "67035523",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "67035548",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 6,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6,
+      "submission": "67113921",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 6,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6,
+      "submission": "67113943",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 4,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 4,
+      "submission": "67225698",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 6,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 6,
+      "submission": "67228302",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 8,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 8,
+      "submission": "67228375",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 8,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 8,
+      "submission": "67283559",
+      "task": "abc365d"
+    },
+    {
+      "ddmin_repair_size": 4,
+      "ddmin_size": 9,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 4,
+      "submission": "65541312",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 4,
+      "ddmin_size": 9,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 4,
+      "submission": "65549527",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "66053042",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "66290391",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "66658547",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "66808962",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "66875780",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "66889844",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "66889857",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "67028599",
+      "task": "abc366c"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "63090199",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "63618182",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "63618273",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 166154,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 166154,
+      "submission": "63618307",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "65761143",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "66154485",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": 9,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "66250755",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "67193151",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 11,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 11,
+      "submission": "67193160",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 2199910,
+      "ddmin_size": 25,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 2199910,
+      "submission": "67202273",
+      "task": "abc367d"
+    },
+    {
+      "ddmin_repair_size": 12,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 12,
+      "submission": "66495377",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 12,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 12,
+      "submission": "66662226",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 12,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 12,
+      "submission": "66662246",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 21,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 21,
+      "submission": "67014332",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": 29,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "67108987",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 12,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 12,
+      "submission": "67109097",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 12,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 12,
+      "submission": "67109122",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": 29,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "67112272",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "67188516",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": 20,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "67191225",
+      "task": "abc368c"
+    },
+    {
+      "ddmin_repair_size": 19,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 19,
+      "submission": "66290467",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 37,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 37,
+      "submission": "66291076",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 37,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 37,
+      "submission": "66381795",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 26,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 26,
+      "submission": "66452865",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 26,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 26,
+      "submission": "66698094",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 37,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 37,
+      "submission": "67240077",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 13,
+      "ddmin_size": 22,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 13,
+      "submission": "67265264",
+      "task": "abc369d"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "65350192",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "65350266",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 1567915,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "65350386",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 1567915,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "65350419",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "65496614",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "65527153",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "65578854",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 26,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 26,
+      "submission": "66200722",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "67044691",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "67283761",
+      "task": "abc370d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66610631",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66610768",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 43,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 43,
+      "submission": "66715307",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66849751",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66849824",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66850066",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66993984",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66994557",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66994628",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 84,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 84,
+      "submission": "66997913",
+      "task": "abc371d"
+    },
+    {
+      "ddmin_repair_size": 18610,
+      "ddmin_size": 17,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "62869553",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 18610,
+      "ddmin_size": 17,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "62869832",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 18610,
+      "ddmin_size": 16,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "62870440",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 18610,
+      "ddmin_size": 13,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "62871448",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 18610,
+      "ddmin_size": 13,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "63234684",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 93,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 93,
+      "submission": "63594225",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 93,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 93,
+      "submission": "63594564",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 52,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 52,
+      "submission": "65229436",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 52,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 52,
+      "submission": "65229511",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 1144843,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "65729583",
+      "task": "abc372e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 28,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "66836397",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 27,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 27,
+      "submission": "67058914",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 27,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 27,
+      "submission": "67059080",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "67065995",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "67066043",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "67066226",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "67066262",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 22,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "67100851",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 30,
+      "ddmin_size": 22,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 30,
+      "submission": "67229036",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 28,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 28,
+      "submission": "67236729",
+      "task": "abc373e"
+    },
+    {
+      "ddmin_repair_size": 1364,
+      "ddmin_size": 1368,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1364,
+      "submission": "66609580",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 28,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 28,
+      "submission": "66708613",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1206,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1206,
+      "submission": "66726283",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1364,
+      "ddmin_size": 195,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1364,
+      "submission": "67028820",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1364,
+      "ddmin_size": 1367,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1364,
+      "submission": "67041262",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1506,
+      "ddmin_size": 1510,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1506,
+      "submission": "67041400",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1206,
+      "ddmin_size": 14,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1206,
+      "submission": "67093981",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1506,
+      "ddmin_size": 1509,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1506,
+      "submission": "67096409",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1506,
+      "ddmin_size": 1509,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1506,
+      "submission": "67213607",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 1506,
+      "ddmin_size": 1510,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 1506,
+      "submission": "67243557",
+      "task": "abc374e"
+    },
+    {
+      "ddmin_repair_size": 23,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 23,
+      "submission": "66824352",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "66862386",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "66862442",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "66862484",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "66862645",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "66863024",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "66923608",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "67061482",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "67163740",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 7,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 7,
+      "submission": "67172723",
+      "task": "abc375c"
+    },
+    {
+      "ddmin_repair_size": 620,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 620,
+      "submission": "64955961",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 294696,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 294696,
+      "submission": "64955966",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 294696,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 294696,
+      "submission": "64955978",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 294696,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 294696,
+      "submission": "64962053",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 25,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 25,
+      "submission": "64962645",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "64977242",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "64980246",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "65060141",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "65060332",
+      "task": "abc376c"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "66443013",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "66484903",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "66485044",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 16,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 16,
+      "submission": "66500367",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 45,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 45,
+      "submission": "66669463",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "66676091",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "66684636",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "67073362",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 36,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 36,
+      "submission": "67091871",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 2577853,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": false,
+      "reducefix_size": null,
+      "submission": "67251105",
+      "task": "abc376d"
+    },
+    {
+      "ddmin_repair_size": 25,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 25,
+      "submission": "65710653",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 26,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 26,
+      "submission": "65936878",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "66074967",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "66075325",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "66075483",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "66075558",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "66495343",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 25,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 25,
+      "submission": "66915962",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 26,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 26,
+      "submission": "67027803",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 17,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 17,
+      "submission": "67092162",
+      "task": "abc376e"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "63948871",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "63949051",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "63949262",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 22,
+      "ddmin_size": 8,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 22,
+      "submission": "64188365",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": 8,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "64493735",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 14,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 14,
+      "submission": "64493881",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "64698368",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": null,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "64698971",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 13,
+      "ddmin_size": 7,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 13,
+      "submission": "64868673",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 13,
+      "ddmin_size": 8,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 13,
+      "submission": "64880220",
+      "task": "abc377c"
+    },
+    {
+      "ddmin_repair_size": 5,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 5,
+      "submission": "59971129",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 5,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 5,
+      "submission": "61026107",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "61466538",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "61466557",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 19,
+      "ddmin_size": 10,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 19,
+      "submission": "61634046",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 19,
+      "ddmin_size": 10,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 19,
+      "submission": "61644105",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "64672896",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 10,
+      "ddmin_size": 6,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 10,
+      "submission": "64672933",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": 11,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "67095303",
+      "task": "abc377f"
+    },
+    {
+      "ddmin_repair_size": 31,
+      "ddmin_size": 11,
+      "matches_ddmin": false,
+      "matches_reducefix": true,
+      "reducefix_size": 31,
+      "submission": "67095334",
+      "task": "abc377f"
+    }
+  ],
+  "reducefix_success": 190,
+  "source_files": {
+    "result_ddmin_repair_qwen2.5-coder-7b.json": "526872108185cc7f9c27b73f690bff6ede022b520636c736afd6b7eb7a9ba0e3",
+    "result_reducer_ddmin.json": "1b896bab36d32126023c27352354c4fbdd89db06aa0c4de6068a5704dc4a7721",
+    "result_reducer_reducefix.json": "d3447a5ad76666f704feb94dd1188e7084e8f17def76f54f15346f9344a58762"
+  },
+  "strict_joint_success": 66
+}

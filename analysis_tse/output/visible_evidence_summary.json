@@ -1,0 +1,100 @@
+{
+  "all_case_model_rows": 800,
+  "models": {
+    "DeepSeek-V3": {
+      "cases": 200,
+      "origin_prompt_contains_input": 200,
+      "origin_shown_forms": {
+        "full": 43,
+        "prefix_20480": 100,
+        "prefix_40960": 57
+      },
+      "origin_truncated": 157,
+      "reduced_prompt_contains_input": 200,
+      "reduced_shown_forms": {
+        "full": 185,
+        "not_source_prefix": 3,
+        "prefix_20480": 6,
+        "prefix_40960": 6
+      },
+      "reduced_truncated": 15
+    },
+    "GLM-4-9B-Chat": {
+      "cases": 200,
+      "origin_prompt_contains_input": 200,
+      "origin_shown_forms": {
+        "full": 44,
+        "prefix_20480": 21,
+        "prefix_40960": 135
+      },
+      "origin_truncated": 156,
+      "reduced_prompt_contains_input": 200,
+      "reduced_shown_forms": {
+        "full": 185,
+        "not_source_prefix": 3,
+        "prefix_20480": 1,
+        "prefix_40960": 11
+      },
+      "reduced_truncated": 15
+    },
+    "Qwen2.5-Coder-7B-Instruct": {
+      "cases": 200,
+      "origin_prompt_contains_input": 200,
+      "origin_shown_forms": {
+        "full": 43,
+        "prefix_20480": 132,
+        "prefix_40960": 25
+      },
+      "origin_truncated": 157,
+      "reduced_prompt_contains_input": 200,
+      "reduced_shown_forms": {
+        "full": 185,
+        "not_source_prefix": 4,
+        "prefix_20480": 1,
+        "prefix_40960": 6,
+        "prefix_other": 4
+      },
+      "reduced_truncated": 15
+    },
+    "Qwen2.5-Plus": {
+      "cases": 200,
+      "origin_prompt_contains_input": 200,
+      "origin_shown_forms": {
+        "full": 43,
+        "prefix_20480": 123,
+        "prefix_40960": 34
+      },
+      "origin_truncated": 157,
+      "reduced_prompt_contains_input": 200,
+      "reduced_shown_forms": {
+        "full": 185,
+        "not_source_prefix": 3,
+        "prefix_20480": 6,
+        "prefix_40960": 6
+      },
+      "reduced_truncated": 15
+    }
+  },
+  "repair_delta_by_origin_visibility": {
+    "full": {
+      "reduced_minus_origin": {
+        "bootstrap_samples": 10000,
+        "ci_high": 0.02032520325203252,
+        "ci_low": -0.021666666666666667,
+        "cluster": "task",
+        "estimate": 0.002890173410404625
+      },
+      "rows": 173
+    },
+    "truncated": {
+      "reduced_minus_origin": {
+        "bootstrap_samples": 10000,
+        "ci_high": 0.03292532363978546,
+        "ci_low": 0.005930064978231111,
+        "cluster": "task",
+        "estimate": 0.019138755980861243
+      },
+      "rows": 627
+    }
+  }
+}

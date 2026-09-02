@@ -1,0 +1,30 @@
+{
+ "arms": {
+  "ev_full": {
+   "candidates": 1840,
+   "witness_fix": 497,
+   "witness_fix_rate": 27.01086956521739,
+   "fix_but_fail_suite": 293,
+   "fix_and_pass_suite": 204,
+   "suite_passers": 278,
+   "suite_passers_fixing_witness": 204
+  },
+  "ev_none": {
+   "candidates": 1840,
+   "witness_fix": 482,
+   "witness_fix_rate": 26.195652173913043,
+   "fix_but_fail_suite": 287,
+   "fix_and_pass_suite": 195,
+   "suite_passers": 250,
+   "suite_passers_fixing_witness": 195
+  }
+ },
+ "paired_full_minus_none": {
+  "mean": 0.8152173913043478,
+  "ci": [
+   -1.2222222222222223,
+   2.628205128205128
+  ],
+  "n": 46
+ }
+}

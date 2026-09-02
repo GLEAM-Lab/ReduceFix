@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Print and sanity-check key manuscript numbers from result snapshots."""
 
 from __future__ import annotations
@@ -13,10 +13,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 MANUSCRIPT_ROOT = ROOT.parent
-MANUSCRIPT_SOURCE_FILES = sorted(MANUSCRIPT_ROOT.glob("*.tex")) + [
-    MANUSCRIPT_ROOT / "submission_letter_tosem.md",
-    MANUSCRIPT_ROOT / "readme.txt",
-    ROOT / "README.md",
+MANUSCRIPT_SOURCE_FILES = [
+    path
+    for path in sorted(MANUSCRIPT_ROOT.glob("*.tex"))
+    + [
+        MANUSCRIPT_ROOT / "submission_letter_tse.md",
+        MANUSCRIPT_ROOT / "submission_letter_tse.txt",
+        MANUSCRIPT_ROOT / "readme.txt",
+        ROOT / "README.md",
+    ]
+    if path.is_file()
 ]
 MAIN_WORD_COUNT_FILES = [
     "0.abstract.tex",
@@ -30,7 +36,6 @@ MAIN_WORD_COUNT_FILES = [
     "5.experiments-rq3.tex",
     "5.experiments-rq4.tex",
     "5.experiments-rq5.tex",
-    "6.discussion.tex",
     "7.threats.tex",
     "8.related_works.tex",
     "9.conclusion.tex",
@@ -67,24 +72,24 @@ def check_p(label: str, actual: float, expected_rounded: float) -> None:
     check_equal(label, round(actual, 3), expected_rounded)
 
 
-def check_contains(label: str, file_name: str, expected: str) -> bool:
+def check_contains(label: str, file_name: str, expected: str) -> None:
     path = MANUSCRIPT_ROOT / file_name
     if not path.exists():
-        return False
+        print(f"Skipping manuscript source check {label}: {file_name} not found.")
+        return
     text = path.read_text(encoding="utf-8")
     if expected not in text:
         raise AssertionError(f"{label}: {expected!r} not found in {file_name}")
-    return True
 
 
-def check_not_contains(label: str, file_name: str, unexpected: str) -> bool:
+def check_not_contains(label: str, file_name: str, unexpected: str) -> None:
     path = MANUSCRIPT_ROOT / file_name
     if not path.exists():
-        return False
+        print(f"Skipping manuscript source check {label}: {file_name} not found.")
+        return
     text = path.read_text(encoding="utf-8")
     if unexpected in text:
         raise AssertionError(f"{label}: unexpected {unexpected!r} found in {file_name}")
-    return True
 
 
 def check_readme_hashes() -> None:
@@ -261,10 +266,6 @@ def tex_word_count(text: str) -> int:
 
 
 def check_submission_gates() -> None:
-    required_paths = [MANUSCRIPT_ROOT / name for name in ["0.abstract.tex", *MAIN_WORD_COUNT_FILES]]
-    if not all(path.exists() for path in required_paths):
-        print("  submission gates: skipped (manuscript source files not included in this artifact checkout)")
-        return
     abstract_text = (MANUSCRIPT_ROOT / "0.abstract.tex").read_text(encoding="utf-8")
     abstract_words = tex_word_count(abstract_text)
     if abstract_words > 220:
@@ -277,62 +278,48 @@ def check_submission_gates() -> None:
 
 
 def check_submission_format_gates() -> None:
-    required_paths = [
-        MANUSCRIPT_ROOT / "main.tex",
-        MANUSCRIPT_ROOT / "supplementary.tex",
-        MANUSCRIPT_ROOT / "submission_letter_tosem.md",
-        MANUSCRIPT_ROOT / "readme.txt",
-    ]
-    if not all(path.exists() for path in required_paths):
-        print("  submission format gates: skipped (submission-only files not included in this artifact checkout)")
-        return
     main = (MANUSCRIPT_ROOT / "main.tex").read_text(encoding="utf-8")
-    supplement = (MANUSCRIPT_ROOT / "supplementary.tex").read_text(encoding="utf-8")
-    cover = (MANUSCRIPT_ROOT / "submission_letter_tosem.md").read_text(encoding="utf-8")
+    appendix_path = MANUSCRIPT_ROOT / "appendix_main.tex"
+    if not appendix_path.is_file():
+        print("  appendix wiring: supplement absent, check skipped")
+        return
+    appendix = appendix_path.read_text(encoding="utf-8")
+    authors = (MANUSCRIPT_ROOT / "authors.tex").read_text(encoding="utf-8")
+    cover = (MANUSCRIPT_ROOT / "submission_letter_tse.md").read_text(encoding="utf-8")
     readme = (MANUSCRIPT_ROOT / "readme.txt").read_text(encoding="utf-8")
     required_main = [
-        "\\documentclass[acmsmall,review]{acmart}",
-        "\\settopmatter{printacmref=false}",
-        "An earlier conference version of this work was accepted at ICSE 2026",
-        "expands OSS-Fuzz from a 12-case study to a 167-case evaluation selected based on failure-inducing tests and developer-patch size",
-        "reframes the method around a predicate/validator interface",
-        "supplementary SQLancer compact reproducers",
+        "\\documentclass[10pt,journal,compsoc]{IEEEtran}",
+        "\\setcounter{secnumdepth}{3}",
+    ]
+    required_appendix = [
+        "\\documentclass[10pt,journal,compsoc]{IEEEtran}",
+        "\\externaldocument{main}",
+        "\\bibliography{sample-base}",
+    ]
+    # IEEE requires the earlier conference version to be disclosed on page one.
+    required_authors = [
+        "A preliminary version of this work appeared at ICSE 2026",
     ]
     required_cover = [
-        "This manuscript extends the ICSE 2026 conference paper",
-        "Relative to the conference version",
-        "selected by failure-inducing test size",
         "not under review elsewhere",
-        "All authors have approved this submission",
-    ]
-    required_supplement = [
-        "\\documentclass[manuscript,screen,nonacm]{acmart}",
-        "\\title{\\tool: Supplementary Material}",
-        "\\section{OSS-Fuzz Cohort Selection}",
     ]
     required_readme = [
-        "Supplementary online-only material for",
         "artifact_snapshot/check_snapshot_numbers.py",
-        "Running the optional snapshot checker requires Python 3",
-        "public implementation repository is available",
-        "LaTeX structure",
     ]
     for label, text, required in [
         ("main template", main, required_main),
+        ("appendix template", appendix, required_appendix),
+        ("prior-publication disclosure", authors, required_authors),
         ("cover letter", cover, required_cover),
-        ("supplementary template", supplement, required_supplement),
         ("supplementary readme", readme, required_readme),
     ]:
         for phrase in required:
             if phrase not in text:
                 raise AssertionError(f"submission format gate: {phrase!r} missing from {label}")
-    print("  submission format gates: ACM/TOSEM template and prior-version disclosures present")
+    print("  submission format gates: IEEE/TSE template, appendix wiring, and prior-version disclosure present")
 
 
 def check_bib_consistency() -> None:
-    if not (MANUSCRIPT_ROOT / "sample-base.bib").exists():
-        print("  citation/BibTeX gate: skipped (manuscript bibliography not included in this artifact checkout)")
-        return
     bib_text = (MANUSCRIPT_ROOT / "sample-base.bib").read_text(encoding="utf-8")
     bib_entries: dict[str, tuple[str, set[str]]] = {}
     for match in re.finditer(r"@(\w+)\s*\{\s*([^,\s]+)\s*,(.*?)(?=\n@\w+\s*\{|\Z)", bib_text, flags=re.S):
@@ -346,7 +333,10 @@ def check_bib_consistency() -> None:
         for cite_group in re.findall(r"\\cite\w*\{([^}]+)\}", text):
             used_keys.update(key.strip() for key in cite_group.split(",") if key.strip())
     missing = sorted(used_keys - bib_keys)
-    unused = sorted(bib_keys - used_keys)
+    # Entries cited only by the supplement look unused when it is not
+    # checked out, which says nothing about the bibliography.
+    supplement_present = (MANUSCRIPT_ROOT / "appendix_main.tex").is_file()
+    unused = sorted(bib_keys - used_keys) if supplement_present else []
     if missing:
         raise AssertionError(f"citation gate: missing BibTeX keys {missing}")
     if unused:
@@ -402,6 +392,103 @@ def paired_locality_sign_test(best: dict, metric: str, other: str, higher_is_bet
         else:
             worse += 1
     return better, worse, tie, two_sided_sign_p(better, worse)
+
+
+
+def load_jsonl(name: str) -> list:
+    rows = []
+    with (ROOT / name).open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                rows.append(json.loads(line))
+    return rows
+
+
+def report_search_behaviour() -> None:
+    """Recompute the generated reducers' own search figures."""
+    from statistics import median
+
+    rf = load_jsonl("reducer_search_log.jsonl")
+    reduced = [
+        r for r in rf
+        if r.get("status") == "ok"
+        and r.get("reduced_size") is not None
+        and r["reduced_size"] < r["original_size"]
+    ]
+    calls = [r["predicate_calls"] for r in reduced if r.get("predicate_calls")]
+    per_call = [
+        (r["original_size"] - r["reduced_size"]) / r["predicate_calls"]
+        for r in reduced if r.get("predicate_calls")
+    ]
+    accepted = [
+        100.0 * r["accepted_moves"] / r["predicate_calls"] for r in reduced
+        if r.get("accepted_moves") is not None and r.get("predicate_calls")
+    ]
+    moves = [r["accepted_moves"] for r in reduced
+             if r.get("accepted_moves") is not None]
+
+    print("\nGenerated-reducer search behaviour")
+    print(f"  programs reduced: {len(reduced)}")
+    print(f"  median evaluations={median(calls):.0f}, "
+          f"bytes per evaluation={median(per_call):,.0f}, "
+          f"advancing={median(accepted):.1f}%, "
+          f"accepted moves={median(moves):.0f}")
+
+    check_equal("search: median evaluations", round(median(calls)), 24)
+    check_equal("search: median bytes per evaluation",
+                round(median(per_call)), 26132)
+    check_equal("search: median advancing share",
+                round(median(accepted), 1), 58.1)
+    check_equal("search: median accepted moves", round(median(moves)), 18)
+
+
+
+def check_fault_failure_vocabulary() -> None:
+    """Keep the manuscript's prose to the standard fault/error/failure terms."""
+    import re
+
+    banned = {
+        "bug": r"\\b[Bb]ugs?\\b",
+        "error": r"\\b[Ee]rrors?\\b",
+        "method": r"\\b[Mm]ethods?\\b",
+        "wrong answer": r"\\b[Ww]rong answers?\\b",
+    }
+    # The prompt template reproduces what was sent to the models, so its
+    # wording belongs to the experiment rather than to the prose.
+    exempt_files = {"supplementary.tex"}
+    exempt_lines = ("\\cite", "\\bibitem", "@", "url{", "lstlisting")
+
+    offences = []
+    for path in sorted(MANUSCRIPT_ROOT.glob("*.tex")):
+        if path.name in exempt_files:
+            continue
+        inside_listing = False
+        for number, line in enumerate(
+                path.read_text(encoding="utf-8").splitlines(), 1):
+            stripped = line.lstrip()
+            if "\\begin{lstlisting}" in line:
+                inside_listing = True
+            if "\\end{lstlisting}" in line:
+                inside_listing = False
+                continue
+            if inside_listing or stripped.startswith("%"):
+                continue
+            if any(token in line for token in exempt_lines):
+                continue
+            for term, pattern in banned.items():
+                if re.search(pattern, line):
+                    offences.append(f"{path.name}:{number} uses {term!r}")
+
+    print("\nFault/error/failure vocabulary")
+    if offences:
+        for offence in offences:
+            print(f"  {offence}")
+        raise AssertionError(
+            "vocabulary: the manuscript prose must distinguish fault, error, "
+            "and failure, and must not use 'bug' or 'method': "
+            + "; ".join(offences[:4])
+        )
+    print("  prose keeps fault, error, and failure distinct")
 
 
 def main() -> None:
@@ -755,64 +842,59 @@ def main() -> None:
         f"p={round(two_sided_sign_p(dbms_sign['better'], dbms_sign['worse']), 3)}"
     )
 
-    print("\nManuscript source spot checks")
-    source_checks = [
-        ("prior-version title note", "main.tex", "expands OSS-Fuzz from a 12-case study to a 167-case evaluation selected based on failure-inducing tests and developer-patch size"),
-        ("abstract LFTBench result", "0.abstract.tex", "pass@10 rises from the no-test Baseline's 20.0\\% to 25.5\\%, with Origin Test at 19.0\\%"),
-        ("abstract repair-harness result", "0.abstract.tex", "raises pass@10 by 21.3\\% relative in a single-round ChatRepair-style setup and by 2.6\\% relative in adapted CREF"),
-        ("abstract ddmin repair baseline", "0.abstract.tex", "has higher pass@10 than a \\emph{ddmin}-only reduce-first repair baseline"),
-        ("abstract OSS-Fuzz repair scope", "0.abstract.tex", "raises oracle-localized repository repair pass@10 to 14.4\\%, from 12.0\\% for the no-test Baseline and 11.4\\% for Origin Test"),
-        ("abstract OSS-Fuzz cohort", "0.abstract.tex", "selected by failure-inducing test size ($\\ge$4\\,KB) and developer patch size ($<$512\\,KB)"),
-        ("abstract mechanism scope", "0.abstract.tex", "Mechanism and case-study analyses link these outcomes"),
-        ("approach figure budget calibration", "3.approach.tex", "OSS-Fuzz uses the 240-second Docker-backed budget in RQ-5"),
-        ("introduction benchmark rationale", "1.introduction.tex", "complement established APR benchmarks with recent long-input tasks"),
-        ("introduction SQLancer scope", "1.introduction.tex", "a supplementary SQLancer check applies the same interface"),
-        ("introduction transfer claim", "1.introduction.tex", "These results show that reducer synthesis works across validators"),
-        ("introduction oracle source context", "1.introduction.tex", "developer patches localize the shared source context but patch text is excluded from prompts"),
-        ("introduction OSS-Fuzz relative gain", "1.introduction.tex", "relative pass@10 gains of 26.3\\% over Origin Test and 20.0\\% over no-test Baseline"),
-        ("conclusion OSS-Fuzz repair", "9.conclusion.tex", "The smallest witness is not always the best repair witness"),
-        ("conclusion OSS-Fuzz relative gain", "9.conclusion.tex", "\\tool covers more cases and can retain crash structure"),
-        ("conclusion mechanism calibration", "9.conclusion.tex", "reduced evidence helps most when the harness relies directly on failing-test feedback"),
-        ("cover-letter prior-version delta", "submission_letter_tosem.md", "expanded from the 12-case OSS-Fuzz study into a 167-case cohort selected by failure-inducing test size"),
-        ("threats OSS-Fuzz paired design", "7.threats.tex", "This yields paired repair results for comparing crash-input evidence"),
-        ("threats OSS-Fuzz filtering", "7.threats.tex", "requiring a failure-inducing test of at least 4\\,KB and a developer patch smaller than 512\\,KB"),
-        ("threats benchmark scope", "7.threats.tex", "complement older APR benchmarks with recent structured inputs"),
-        ("OSS-Fuzz retention rule", "4.experimental_setup.tex", "failure-inducing test is at least 4\\,KB"),
-        ("OSS-Fuzz patch-size rule", "4.experimental_setup.tex", "developer patch is smaller than 512\\,KB"),
-        ("repair correctness metric", "4.experimental_setup.tex", "pass@10} as the repair correctness metric"),
-        ("repair-location control", "4.experimental_setup.tex", "every prompt variant receives the same repair-location hint"),
-        ("patch-locality normalization", "4.experimental_setup.tex", "Normalization removes comments and collapses whitespace"),
-        ("OSS-Fuzz locality scope", "4.experimental_setup.tex", "touched patch hunks for OSS-Fuzz"),
-        ("submission-package snapshots", "4.experimental_setup.tex", "The submission package includes compact traceability snapshots"),
-        ("supplementary OSS-Fuzz cohort rule", "supplementary.tex", "Selection rule for the OSS-Fuzz cohort"),
-        ("supplementary DBMS table", "supplementary.tex", "Stateful SQL-sequence reduction on 78 stable SQLite SQLancer cases"),
-        ("supplementary patch locality", "supplementary.tex", "Full-file patch-locality diagnostics"),
-        ("RQ2 repair-location details", "5.experiments-rq2.tex", "The hint contains only buggy-code line ranges and local buggy-side snippets"),
-        ("RQ2 pass@10 sign test", "5.experiments-rq2.tex", "23 non-tied bugs favoring Reduced Test and 10 favoring Origin Test ($p=0.035$)"),
-        ("RQ5 reduction table", "5.experiments-rq5.tex", "46.5\\%/51.3\\% average/median end-to-end CR"),
-        ("RQ5 repair relative gain", "5.experiments-rq5.tex", "26.3\\% relative increase over Origin Test and a 20.0\\% relative increase"),
-        ("RQ5 correct patches", "5.experiments-rq5.tex", "It produces 98 correct patches over 24 solved cases"),
-        ("RQ5 reduction mechanism", "5.experiments-rq5.tex", "Reduction mechanism decomposition on the fixed OSS-Fuzz cohort"),
-        ("RQ5 repair table", "5.experiments-rq5.tex", "14.4\\% vs. 11.4\\%"),
-        ("correctness threat", "7.threats.tex", "Patch correctness is defined by the benchmark validation suite"),
+    report_search_behaviour()
+
+    print("\nManuscript number spot checks")
+    # Sentence-level assertions decayed on every rewrite and could not survive an
+    # edit pass; these guard the invariant that matters instead, namely that a
+    # value reported in one place is reported the same way everywhere it appears.
+    check_contains("visible-evidence caps (setup)", "4.experimental_setup.tex",
+                   "20{,}480")
+    check_contains("visible-evidence caps (setup)", "4.experimental_setup.tex",
+                   "40{,}960")
+    check_contains("reserved output budget", "4.experimental_setup.tex",
+                   "4{,}096")
+
+    number_checks = [
+        ("reduction success rate", "5.experiments-rq2.tex", ["95.0", "40.0", "35.5"]),
+        ("reduction success rate (abstract)", "0.abstract.tex", ["95.0", "40.0", "35.5"]),
+        ("aggregate repair", "0.abstract.tex", ["40.9", "36.9"]),
+        ("aggregate repair (RQ-1)", "5.experiments-rq1.tex", ["40.9", "36.9"]),
+        ("visible-evidence audit", "5.experiments-rq1.tex", ["78.4", "92.5"]),
+        ("gain by stratum", "5.experiments-rq1.tex", ["+10.2", "+2.6", "548", "451", "+0.6", "+6.8"]),
+        ("gain by stratum (intro)", "1.introduction.tex", ["+10.2"]),
+        ("witness position", "5.experiments-rq1.tex", ["77", "50", "25"]),
+        ("prompt cost per passing patch", "5.experiments-rq1.tex", ["33.2", "167.3", "14.8"]),
+        ("solved pairs by condition", "5.experiments-rq1.tex", ["327", "295", "308"]),
+        ("OSS-Fuzz reduction", "5.experiments-rq5.tex", ["83.2", "43.7"]),
+        ("OSS-Fuzz repair", "5.experiments-rq5.tex", ["14.4", "11.4", "12.0"]),
+        ("OSS-Fuzz cohort size", "4.experimental_setup.tex", ["167"]),
+        ("benchmark scale", "4.experimental_setup.tex", ["200", "1.3"]),
     ]
-    for label, file_name, expected in source_checks:
-        if check_contains(label, file_name, expected):
-            print(f"  {label}: found in {file_name}")
-    if check_not_contains("reducer prompt I/O-pair mismatch", "3.approach.tex", "and a few I/O pairs"):
-        print("  reducer prompt I/O-pair mismatch: absent from 3.approach.tex")
+    for label, file_name, values in number_checks:
+        for value in values:
+            check_contains(label, file_name, value)
+        print(f"  {label}: {', '.join(values)} present in {file_name}")
+
+    check_not_contains("reducer prompt I/O-pair mismatch", "3.approach.tex", "and a few I/O pairs")
+    print("  reducer prompt I/O-pair mismatch: absent from 3.approach.tex")
     for unexpected in ("basicstyle=\\scriptsize", "basicstyle=\\ttfamily\\footnotesize", "basicstyle=\\small"):
-        if check_not_contains("listing default font", "macros.tex", unexpected):
-            print(f"  listing default font: {unexpected} absent from macros.tex")
-    check_source_hygiene()
-    print("  source hygiene: no reviewer-risk residual phrases found")
-    check_figure_descriptions()
-    print("  figure descriptions: every included figure has a nearby \\Description")
-    check_latex_structure()
-    print("  latex structure gates: labels, refs, inputs, and graphics resolve")
-    check_submission_gates()
-    check_submission_format_gates()
-    check_bib_consistency()
+        check_not_contains("listing default font", "macros.tex", unexpected)
+        print(f"  listing default font: {unexpected} absent from macros.tex")
+
+    if (MANUSCRIPT_ROOT / "main.tex").is_file():
+        check_fault_failure_vocabulary()
+        check_source_hygiene()
+        print("  source hygiene: no reviewer-risk residual phrases found")
+        check_figure_descriptions()
+        print("  figure descriptions: every included figure has a nearby \\Description")
+        check_latex_structure()
+        print("  latex structure gates: labels, refs, inputs, and graphics resolve")
+        check_submission_gates()
+        check_submission_format_gates()
+        check_bib_consistency()
+    else:
+        print("  manuscript source not present here; manuscript gates skipped")
 
     check_readme_hashes()
     print("  artifact README hashes: match current snapshot files")

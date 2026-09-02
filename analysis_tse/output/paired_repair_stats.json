@@ -1,0 +1,120 @@
+{
+  "by_model": {
+    "DeepSeek-V3": {
+      "no_tc": {
+        "pass@1": 0.4525,
+        "pass@10": 0.665,
+        "pass@5": 0.6251388888888889
+      },
+      "orig_tc": {
+        "pass@1": 0.46149999999999997,
+        "pass@10": 0.63,
+        "pass@5": 0.6133730158730158
+      },
+      "reduced_tc": {
+        "pass@1": 0.45899999999999996,
+        "pass@10": 0.67,
+        "pass@5": 0.631031746031746
+      }
+    },
+    "GLM-4-9B-Chat": {
+      "no_tc": {
+        "pass@1": 0.024499999999999997,
+        "pass@10": 0.085,
+        "pass@5": 0.06478174603174602
+      },
+      "orig_tc": {
+        "pass@1": 0.013499999999999998,
+        "pass@10": 0.065,
+        "pass@5": 0.045099206349206354
+      },
+      "reduced_tc": {
+        "pass@1": 0.033,
+        "pass@10": 0.1,
+        "pass@5": 0.07531746031746031
+      }
+    },
+    "Qwen2.5-Coder-7B-Instruct": {
+      "no_tc": {
+        "pass@1": 0.046,
+        "pass@10": 0.2,
+        "pass@5": 0.13884920634920633
+      },
+      "orig_tc": {
+        "pass@1": 0.040999999999999995,
+        "pass@10": 0.19,
+        "pass@5": 0.13055555555555556
+      },
+      "reduced_tc": {
+        "pass@1": 0.063,
+        "pass@10": 0.255,
+        "pass@5": 0.1794047619047619
+      }
+    },
+    "Qwen2.5-Plus": {
+      "no_tc": {
+        "pass@1": 0.34,
+        "pass@10": 0.59,
+        "pass@5": 0.5223412698412698
+      },
+      "orig_tc": {
+        "pass@1": 0.327,
+        "pass@10": 0.59,
+        "pass@5": 0.5325595238095238
+      },
+      "reduced_tc": {
+        "pass@1": 0.3505,
+        "pass@10": 0.61,
+        "pass@5": 0.5349206349206349
+      }
+    }
+  },
+  "overall": {
+    "no_tc": {
+      "correct_candidates": 1726,
+      "pass@1": 0.21575,
+      "pass@10": 0.385,
+      "pass@5": 0.3377777777777778
+    },
+    "orig_tc": {
+      "correct_candidates": 1686,
+      "pass@1": 0.21075,
+      "pass@10": 0.36875,
+      "pass@5": 0.33039682539682536
+    },
+    "reduced_tc": {
+      "correct_candidates": 1811,
+      "pass@1": 0.226375,
+      "pass@10": 0.40875,
+      "pass@5": 0.35516865079365084
+    }
+  },
+  "paired": {
+    "reduced_minus_no_test": {
+      "losses": 119,
+      "mean_candidate_success_delta": {
+        "bootstrap_samples": 10000,
+        "ci_high": 0.033624999999999995,
+        "ci_low": -0.0105,
+        "cluster": "task",
+        "estimate": 0.010625
+      },
+      "ties": 522,
+      "unit": "task-submission-model",
+      "wins": 159
+    },
+    "reduced_minus_origin": {
+      "losses": 104,
+      "mean_candidate_success_delta": {
+        "bootstrap_samples": 10000,
+        "ci_high": 0.0275,
+        "ci_low": 0.004125000000000001,
+        "cluster": "task",
+        "estimate": 0.015625
+      },
+      "ties": 530,
+      "unit": "task-submission-model",
+      "wins": 166
+    }
+  }
+}

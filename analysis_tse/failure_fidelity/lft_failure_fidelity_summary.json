@@ -1,0 +1,334 @@
+{
+  "analysis_policy": {
+    "inference": "task-cluster bootstrap with 10,000 resamples",
+    "repair_quarantine": "exclude case-model rows whose archived Reduced Test is a source mismatch",
+    "repair_unit": "mean candidate-success rate across available models for each case",
+    "signature_match": "same outcome category, mismatch kind, and first numeric-difference direction",
+    "strict_output_divergence": "accepted and faulty programs both exit normally and stripped stdout differs"
+  },
+  "artifact_size_matches_recorded": 190,
+  "correlations_within_strict": {
+    "branch_count_cosine_vs_repair_gain": {
+      "n": 153,
+      "p_value": 0.1393352021318585,
+      "spearman_rho": -0.12006300554001359
+    },
+    "branch_jaccard_vs_repair_gain": {
+      "n": 153,
+      "p_value": 0.2753637018933307,
+      "spearman_rho": -0.08873907000971229
+    },
+    "branch_recall_vs_repair_gain": {
+      "n": 153,
+      "p_value": 0.30382725293883056,
+      "spearman_rho": -0.08367023936385928
+    },
+    "compression_ratio_vs_repair_gain": {
+      "n": 153,
+      "p_value": 0.4234016065118795,
+      "spearman_rho": 0.06518501872309386
+    }
+  },
+  "execution_bins": {
+    "branch_recall_0_75_to_lt_0_95": {
+      "cases": 44,
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          0.009375000000000003,
+          0.05166810344827585
+        ],
+        "mean": 0.02727272727272728,
+        "median": 0.0,
+        "n": 44,
+        "tasks": 14,
+        "wins_ties_losses": {
+          "losses": 9,
+          "ties": 14,
+          "wins": 21
+        }
+      }
+    },
+    "branch_recall_0_95_to_lt_1": {
+      "cases": 15,
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          -0.01666666666666666,
+          0.05555555555555555
+        ],
+        "mean": 0.010000000000000002,
+        "median": 0.024999999999999994,
+        "n": 15,
+        "tasks": 5,
+        "wins_ties_losses": {
+          "losses": 5,
+          "ties": 2,
+          "wins": 8
+        }
+      }
+    },
+    "branch_recall_1": {
+      "cases": 73,
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          0.010632183908045982,
+          0.025396825396825393
+        ],
+        "mean": 0.01780821917808219,
+        "median": 0.0,
+        "n": 73,
+        "tasks": 15,
+        "wins_ties_losses": {
+          "losses": 18,
+          "ties": 25,
+          "wins": 30
+        }
+      }
+    },
+    "branch_recall_lt_0_75": {
+      "cases": 21,
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          -0.09833333333333333,
+          0.07400000000000001
+        ],
+        "mean": 0.011904761904761904,
+        "median": 0.025,
+        "n": 21,
+        "tasks": 8,
+        "wins_ties_losses": {
+          "losses": 8,
+          "ties": 1,
+          "wins": 12
+        }
+      }
+    }
+  },
+  "execution_similarity_within_strict": {
+    "branch_count_cosine": {
+      "max": 1.0000000000000002,
+      "mean": 0.7715754954981004,
+      "median": 0.8606679863327347,
+      "min": 1.1255457006688466e-09,
+      "n": 153,
+      "p25": 0.6665110631947925,
+      "p75": 0.9467946571421436
+    },
+    "branch_jaccard": {
+      "max": 1.0,
+      "mean": 0.8939940623818411,
+      "median": 0.9545454545454546,
+      "min": 0.0,
+      "n": 154,
+      "p25": 0.8617424242424243,
+      "p75": 1.0
+    },
+    "branch_recall": {
+      "max": 1.0,
+      "mean": 0.9029040050968467,
+      "median": 0.9565217391304348,
+      "min": 0.047619047619047616,
+      "n": 153,
+      "p25": 0.8636363636363636,
+      "p75": 1.0
+    },
+    "line_count_cosine": {
+      "max": 1.0000000000000002,
+      "mean": 0.79148266253362,
+      "median": 0.8574634306881648,
+      "min": 0.01804409763658517,
+      "n": 153,
+      "p25": 0.7171412293616527,
+      "p75": 0.9616772279665329
+    },
+    "line_jaccard": {
+      "max": 1.0,
+      "mean": 0.9391579169084223,
+      "median": 1.0,
+      "min": 0.0,
+      "n": 154,
+      "p25": 0.9375,
+      "p75": 1.0
+    },
+    "line_recall": {
+      "max": 1.0,
+      "mean": 0.9469917945173102,
+      "median": 1.0,
+      "min": 0.2,
+      "n": 153,
+      "p25": 0.9473684210526315,
+      "p75": 1.0
+    }
+  },
+  "fidelity_groups": {
+    "output_divergence_not_preserved": {
+      "branch_recall": {
+        "max": 1.0,
+        "mean": 0.6395806713671569,
+        "median": 0.7647058823529411,
+        "min": 0.0,
+        "n": 31,
+        "p25": 0.5638775510204082,
+        "p75": 0.8982758620689655
+      },
+      "cases": 35,
+      "compression_ratio": {
+        "max": 0.9999972665716231,
+        "mean": 0.686990105953689,
+        "median": 0.9999337971544814,
+        "min": 2.2728150860240603e-06,
+        "n": 35,
+        "p25": 0.005438289187822409,
+        "p75": 0.9999807169440212
+      },
+      "repair_gain_reduced_baseline": {
+        "ci95": [
+          -3.4911309954033047e-19,
+          0.035526315789473684
+        ],
+        "mean": 0.013571428571428571,
+        "median": 0.0,
+        "n": 35,
+        "tasks": 8,
+        "wins_ties_losses": {
+          "losses": 4,
+          "ties": 24,
+          "wins": 7
+        }
+      },
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          -0.02115384615384615,
+          0.0225
+        ],
+        "mean": 0.004285714285714286,
+        "median": 0.0,
+        "n": 35,
+        "tasks": 8,
+        "wins_ties_losses": {
+          "losses": 6,
+          "ties": 23,
+          "wins": 6
+        }
+      }
+    },
+    "signature_changed": {
+      "branch_recall": {
+        "max": 1.0,
+        "mean": 0.8068113266787817,
+        "median": 0.927536231884058,
+        "min": 0.3783783783783784,
+        "n": 23,
+        "p25": 0.6388888888888888,
+        "p75": 0.975
+      },
+      "cases": 24,
+      "compression_ratio": {
+        "max": 0.9999947637469604,
+        "mean": 0.9996111985937315,
+        "median": 0.9999892152976169,
+        "min": 0.9971112999150382,
+        "n": 24,
+        "p25": 0.999964638591673,
+        "p75": 0.9999928669708511
+      },
+      "repair_gain_reduced_baseline": {
+        "ci95": [
+          -0.01847826086956522,
+          0.009090909090909092
+        ],
+        "mean": -0.005208333333333336,
+        "median": 0.0,
+        "n": 24,
+        "tasks": 10,
+        "wins_ties_losses": {
+          "losses": 10,
+          "ties": 5,
+          "wins": 9
+        }
+      },
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          -0.08750000000000001,
+          0.051515151515151514
+        ],
+        "mean": -0.0020833333333333316,
+        "median": 3.469446951953614e-18,
+        "n": 24,
+        "tasks": 10,
+        "wins_ties_losses": {
+          "losses": 8,
+          "ties": 4,
+          "wins": 12
+        }
+      }
+    },
+    "signature_match": {
+      "branch_recall": {
+        "max": 1.0,
+        "mean": 0.9199050174323505,
+        "median": 1.0,
+        "min": 0.047619047619047616,
+        "n": 130,
+        "p25": 0.9065180102915952,
+        "p75": 1.0
+      },
+      "cases": 131,
+      "compression_ratio": {
+        "max": 0.999996326649059,
+        "mean": 0.9261427643345024,
+        "median": 0.9999791865646962,
+        "min": 0.00014484356894550743,
+        "n": 131,
+        "p25": 0.9998895034097501,
+        "p75": 0.9999897710405737
+      },
+      "repair_gain_reduced_baseline": {
+        "ci95": [
+          -0.014436815336463222,
+          0.051458333333333335
+        ],
+        "mean": 0.016793893129770993,
+        "median": 0.0,
+        "n": 131,
+        "tasks": 19,
+        "wins_ties_losses": {
+          "losses": 42,
+          "ties": 31,
+          "wins": 58
+        }
+      },
+      "repair_gain_reduced_origin": {
+        "ci95": [
+          0.0129425975177305,
+          0.0322265625
+        ],
+        "mean": 0.022328244274809162,
+        "median": 0.0,
+        "n": 131,
+        "tasks": 19,
+        "wins_ties_losses": {
+          "losses": 33,
+          "ties": 39,
+          "wins": 59
+        }
+      }
+    }
+  },
+  "recorded_success_cases": 190,
+  "reduced_failure_categories": {
+    "faulty_program_signal": 2,
+    "faulty_program_timeout": 3,
+    "oracle_program_not_normal": 8,
+    "output_match": 22,
+    "output_mismatch": 155
+  },
+  "repair_case_rows_after_source_mismatch_quarantine": 190,
+  "schema_version": 1,
+  "signature_match_rate_within_strict": 0.8451612903225807,
+  "signature_match_within_strict": 131,
+  "strict_output_divergence_preserved": 155,
+  "strict_output_divergence_rate_over_200": 0.775,
+  "strict_output_divergence_rate_over_recorded_success": 0.8157894736842105,
+  "strictly_smaller": 190,
+  "unique_cases": 190
+}

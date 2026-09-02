@@ -1,0 +1,225 @@
+{
+  "conditions_present": [
+    "ddmin",
+    "origin_excerpt",
+    "reduced_middle",
+    "reduced_padded",
+    "reduced_tail",
+    "reducefix"
+  ],
+  "bootstrap_resamples": 10000,
+  "contrasts": {
+    "pass@5": {
+      "length_short_vs_padded": {
+        "n": 147,
+        "a": "reducefix",
+        "b": "reduced_padded",
+        "reducefix_pass@5": 0.1973,
+        "reduced_padded_pass@5": 0.1497,
+        "difference": 0.0476,
+        "ci95": [
+          -0.0504,
+          0.131
+        ],
+        "wins_ties_losses": [
+          20,
+          114,
+          13
+        ]
+      },
+      "position_head_vs_middle": {
+        "n": 147,
+        "a": "reduced_padded",
+        "b": "reduced_middle",
+        "reduced_padded_pass@5": 0.1497,
+        "reduced_middle_pass@5": 0.1497,
+        "difference": 0.0,
+        "ci95": [
+          -0.0884,
+          0.0932
+        ],
+        "wins_ties_losses": [
+          14,
+          119,
+          14
+        ]
+      },
+      "position_head_vs_tail": {
+        "n": 147,
+        "a": "reduced_padded",
+        "b": "reduced_tail",
+        "reduced_padded_pass@5": 0.1497,
+        "reduced_tail_pass@5": 0.1497,
+        "difference": 0.0,
+        "ci95": [
+          -0.0798,
+          0.0855
+        ],
+        "wins_ties_losses": [
+          11,
+          125,
+          11
+        ]
+      },
+      "position_middle_vs_tail": {
+        "n": 147,
+        "a": "reduced_middle",
+        "b": "reduced_tail",
+        "reduced_middle_pass@5": 0.1497,
+        "reduced_tail_pass@5": 0.1497,
+        "difference": 0.0,
+        "ci95": [
+          -0.0833,
+          0.094
+        ],
+        "wins_ties_losses": [
+          9,
+          129,
+          9
+        ]
+      },
+      "selection_witness_vs_excerpt": {
+        "n": 147,
+        "a": "reducefix",
+        "b": "origin_excerpt",
+        "reducefix_pass@5": 0.1973,
+        "origin_excerpt_pass@5": 0.2245,
+        "difference": -0.0272,
+        "ci95": [
+          -0.1053,
+          0.0429
+        ],
+        "wins_ties_losses": [
+          13,
+          117,
+          17
+        ]
+      }
+    },
+    "pass@10": {
+      "length_short_vs_padded": {
+        "n": 147,
+        "a": "reducefix",
+        "b": "reduced_padded",
+        "reducefix_pass@10": 0.3129,
+        "reduced_padded_pass@10": 0.2517,
+        "difference": 0.0612,
+        "ci95": [
+          -0.0493,
+          0.1678
+        ],
+        "wins_ties_losses": [
+          23,
+          110,
+          14
+        ]
+      },
+      "position_head_vs_middle": {
+        "n": 147,
+        "a": "reduced_padded",
+        "b": "reduced_middle",
+        "reduced_padded_pass@10": 0.2517,
+        "reduced_middle_pass@10": 0.2109,
+        "difference": 0.0408,
+        "ci95": [
+          -0.0217,
+          0.1111
+        ],
+        "wins_ties_losses": [
+          22,
+          109,
+          16
+        ]
+      },
+      "position_head_vs_tail": {
+        "n": 147,
+        "a": "reduced_padded",
+        "b": "reduced_tail",
+        "reduced_padded_pass@10": 0.2517,
+        "reduced_tail_pass@10": 0.2245,
+        "difference": 0.0272,
+        "ci95": [
+          -0.0165,
+          0.0709
+        ],
+        "wins_ties_losses": [
+          16,
+          119,
+          12
+        ]
+      },
+      "position_middle_vs_tail": {
+        "n": 147,
+        "a": "reduced_middle",
+        "b": "reduced_tail",
+        "reduced_middle_pass@10": 0.2109,
+        "reduced_tail_pass@10": 0.2245,
+        "difference": -0.0136,
+        "ci95": [
+          -0.08,
+          0.0533
+        ],
+        "wins_ties_losses": [
+          11,
+          123,
+          13
+        ]
+      },
+      "selection_witness_vs_excerpt": {
+        "n": 147,
+        "a": "reducefix",
+        "b": "origin_excerpt",
+        "reducefix_pass@10": 0.3129,
+        "origin_excerpt_pass@10": 0.3061,
+        "difference": 0.0068,
+        "ci95": [
+          -0.0621,
+          0.071
+        ],
+        "wins_ties_losses": [
+          18,
+          112,
+          17
+        ]
+      }
+    }
+  },
+  "per_condition_rates": {
+    "ddmin": {
+      "n": 198,
+      "pass@1": 0.0152,
+      "pass@5": 0.1212,
+      "pass@10": 0.1919
+    },
+    "origin_excerpt": {
+      "n": 147,
+      "pass@1": 0.068,
+      "pass@5": 0.2245,
+      "pass@10": 0.3061
+    },
+    "reduced_middle": {
+      "n": 147,
+      "pass@1": 0.0476,
+      "pass@5": 0.1497,
+      "pass@10": 0.2109
+    },
+    "reduced_padded": {
+      "n": 147,
+      "pass@1": 0.034,
+      "pass@5": 0.1497,
+      "pass@10": 0.2517
+    },
+    "reduced_tail": {
+      "n": 147,
+      "pass@1": 0.068,
+      "pass@5": 0.1497,
+      "pass@10": 0.2245
+    },
+    "reducefix": {
+      "n": 198,
+      "pass@1": 0.0253,
+      "pass@5": 0.1515,
+      "pass@10": 0.2424
+    }
+  }
+}

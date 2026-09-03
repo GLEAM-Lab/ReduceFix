@@ -11,13 +11,14 @@ ev_full was run twice by the same generator, at ten candidates and at forty, on
 the same programs with the same prompt. That difference is resampling alone, and
 it is the number a padding contrast has to clear.
 """
+from pathlib import Path
 import collections
 import json
 import os
 import random
 import statistics
 
-os.chdir('C:/Users/Administrator/ReduceFix/ReduceFix/analysis_tse')
+os.chdir(Path(__file__).resolve().parent)
 random.seed(20260810)
 
 

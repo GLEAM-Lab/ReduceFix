@@ -11,13 +11,14 @@ ev_full is the same prompt content as the archived reduced-test run, so the
 comparison between them measures nothing but resampling and is reported as the
 floor any real effect has to clear.
 """
+from pathlib import Path
 import collections
 import json
 import os
 import random
 import statistics
 
-os.chdir('C:/Users/Administrator/ReduceFix/ReduceFix/analysis_tse')
+os.chdir(Path(__file__).resolve().parent)
 random.seed(20260810)
 
 

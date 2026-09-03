@@ -11,7 +11,7 @@ import statistics as st
 from collections import defaultdict
 from pathlib import Path
 
-REPO = Path(r'C:\Users\Administrator\ReduceFix\ReduceFix')
+REPO = Path(__file__).resolve().parents[1]
 RNG = random.Random(20260902)
 
 FAMILY = {}

@@ -13,6 +13,7 @@ the program. The locality snapshot records, per candidate, how far the repaired
 file is from the faulty one and how much of it is retained, which is a
 behavioural signal independent of whether the suite passed.
 """
+from pathlib import Path
 import collections
 import csv
 import json
@@ -20,7 +21,7 @@ import os
 import random
 import statistics
 
-os.chdir('C:/Users/Administrator/ReduceFix/ReduceFix')
+os.chdir(Path(__file__).resolve().parents[1])
 random.seed(20260810)
 
 

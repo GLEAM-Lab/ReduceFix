@@ -45,6 +45,24 @@ the reported tables are in `artifact_snapshot/`:
 python3 artifact_snapshot/check_snapshot_numbers.py
 ```
 
+### Mapping to the journal article
+
+The scripts keep the numbering of the conference version. The journal article
+renumbers its research questions, so each script maps as follows.
+
+| Script | Journal article | Conference version |
+|---|---|---|
+| `rq1.sh` | RQ-3: Reducer Reliability and Compression | RQ-1 |
+| `rq2.sh` | RQ-1: Effectiveness of ReduceFix (LFTBench and LFTBench-Py) | RQ-2 |
+| `rq3.sh` | RQ-4: prompt-composition comparison inside the mechanism question | RQ-3 |
+| `rq4.sh` | RQ-1: plug-in integration into ChatRepair and CREF | RQ-4 |
+| `rq5.sh` | RQ-5: Repository-Level OSS-Fuzz Evaluation | RQ-5 |
+
+The journal article's RQ-2 (when a reduced test helps) and the controlled prompt
+experiments of its RQ-4 are analyses over the archived runs; the scripts that
+produce every number they report are in `analysis_tse/`, indexed by
+`analysis_tse/RESULTS_INVENTORY.md`.
+
 ## Repository Structure
 
 ```bash
@@ -176,7 +194,7 @@ The `prompt_formats/` directory contains all prompt format templates used in the
 
 ## Reproducing Research Questions
 
-### RQ-1: Effectiveness of LLM-generated Reducers
+### RQ-1: Effectiveness of LLM-generated Reducers (journal RQ-3)
 
 This research question evaluates the reliability and effectiveness of LLM-generated reducers at shrinking failure-inducing inputs. We compare three reduction approaches:
 
@@ -215,7 +233,7 @@ The figure below is a summary chart of all 20 automatically synthesized task-spe
 
 ![](reducers.png)
 
-### RQ-2: Effectiveness of Reduced Test Cases for Repair
+### RQ-2: Effectiveness of Reduced Test Cases for Repair (journal RQ-1)
 
 This research question evaluates whether reduced test cases can improve automated program repair effectiveness. We test ReduceFix's repair approach across four different LLM models on C++ submissions, and validate cross-language portability on Python submissions.
 
@@ -282,7 +300,7 @@ Run the command of RQ-2:
 
 For details and options, see the script content.
 
-### RQ-3: Influence of Prompt Composition
+### RQ-3: Influence of Prompt Composition (journal RQ-4)
 
 This research question investigates the distinct influence of two factors within ReduceFix: (i) **length reduction** (fewer tokens to keep fault-relevant text within the model's attention span) and (ii) **information selection** (retaining minimal concrete evidence that still exposes the fault). We compare five prompt strategies on Qwen2.5-Coder-7B-instruct:
 
@@ -322,7 +340,7 @@ Run the command of RQ-3:
 
 For details and options, see the script content.
 
-### RQ-4: Integration with ChatRepair and CREF
+### RQ-4: Integration with ChatRepair and CREF (journal RQ-1)
 
 This research question checks whether ReduceFix can be inserted into existing APR pipelines as a pre-repair evidence step. We replace only the failure-inducing test input while keeping patch generation and validation unchanged, using the same 10-sample budget across settings.
 
@@ -353,7 +371,7 @@ Run the command of RQ-4:
 
 For details and options, see the script content.
 
-### RQ-5: Evaluation on OSS-Fuzz
+### RQ-5: Evaluation on OSS-Fuzz (journal RQ-5)
 
 This research question evaluates ReduceFix on repository-level crash-inducing inputs from OSS-Fuzz. The journal experiment uses a 167-case complete-run subset from the frozen >=4KB manifest where Baseline, Origin Test, and Reduced Test all have the same 10-candidate repair budget.
 

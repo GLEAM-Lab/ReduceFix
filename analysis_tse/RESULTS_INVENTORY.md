@@ -25,12 +25,11 @@ repository root unless the script's usage line says otherwise.
 
 | Claim | Script |
 | --- | --- |
-| Shown-input audit: 173 complete, 78.4% head-only prefix (376 at 20,480 characters, 251 at 40,960); reduced test fully visible in 92.5% | `build_lft_manifest.py` |
 | Paired gain +1.6 [+0.4, +2.8], W/T/L 166/530/104; fit strata +1.9 / +0.3 | `build_lft_manifest.py` (paired_repair_stats.json) |
 | Per-model gains and patch locality | `analyze_model_and_locality.py` |
 | Gain by difficulty, input family, original test size, witness size, and Baseline x Origin | `analyze_gain_by_stratum.py` |
-| Prompt bytes per candidate and per passing patch; solved pairs 295/308/327 with per-candidate success 0.55 to 0.57 | `analyze_cost_and_solved_pairs.py` |
-| Where a witness's material lies: 50 of 77 subsequence witnesses in the first fifth, 25 in the last fifth | `analyze_witness_position.py` |
+| Prompt bytes per candidate and per passing patch | `analyze_cost_and_solved_pairs.py` |
+| Repaired combinations 295/308/327; transfer 269/58/26/447; candidate success on the shared 269 (60.7% vs 63.7%, +3.0 [+0.1, +5.9]) | `analyze_repair_transfer.py` |
 
 ### RQ-2, reducer reliability
 
@@ -53,3 +52,5 @@ Search behaviour (median failure checks, bytes removed per check, advancing shar
 | Position arms | `analyze_prompt_controls.py` (output/prompt_controls.json) |
 | Scrambled arm against the full witness; scrambled short against genuine long | `final_placebo_analysis.py` |
 | Token parity of scrambled and real prompts | `parity_check.py` |
+
+Analyses kept in the repository but not reported in the article (prompt-budget audit, counterexample position) are omitted from this index.

@@ -8,7 +8,7 @@ from collections import defaultdict
 from itertools import combinations
 from pathlib import Path
 
-REPO = Path(r'C:\Users\Administrator\ReduceFix\ReduceFix')
+REPO = Path(__file__).resolve().parents[1]
 rows = [json.loads(l) for l in gzip.open(REPO / 'analysis_tse/output/analysis_manifest.jsonl.gz', 'rt', encoding='utf-8')]
 RNG = random.Random(7)
 

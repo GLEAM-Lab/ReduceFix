@@ -11,6 +11,7 @@ This crosses them, so the decision can be read off rather than inferred, and
 checks whether execution coverage of the reduced test adds anything the
 signature does not already capture.
 """
+from pathlib import Path
 import collections
 import csv
 import json
@@ -18,7 +19,7 @@ import os
 import random
 import statistics
 
-os.chdir('C:/Users/Administrator/ReduceFix/ReduceFix/analysis_tse')
+os.chdir(Path(__file__).resolve().parent)
 random.seed(20260810)
 
 

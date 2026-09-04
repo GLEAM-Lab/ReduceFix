@@ -186,7 +186,12 @@ def main():
         print(line)
     print('\ncontrasts by group')
     for treatment, control, label in (
+            ('ev_input_only', 'ev_none', 'input only vs nothing'),
+            ('ev_outputs_only', 'ev_none', 'outputs only vs nothing'),
             ('ev_full', 'ev_none', 'full counterexample vs nothing'),
+            ('ev_placebo', 'ev_none', 'digit-randomized vs nothing'),
+            ('ev_full', 'ev_placebo', 'full counterexample vs digit-randomized'),
+            ('len_long_output_matched', 'ev_none', 'padded vs nothing'),
             ('len_long_output_matched', 'ev_full', 'padded vs full counterexample'),
             ('ev_placebo', 'len_long_output_matched',
              'digit-randomized short vs genuine padded')):

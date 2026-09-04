@@ -30,6 +30,7 @@ repository root unless the script's usage line says otherwise.
 | Gain by difficulty, input family, original test size, witness size, and Baseline x Origin | `analyze_gain_by_stratum.py` |
 | Prompt bytes per candidate and per passing patch | `analyze_cost_and_solved_pairs.py` |
 | Mechanism cells on the 158-program population: 5.1/5.6/5.8/4.4 pass@1, crossing contrast +2.1/+5.4/+7.1 | nalyze_mechanism_full158.py |
+| Mechanism cells on the 158-program population and the repairable/not-repairable split: padded vs full -2.1 (all) / -5.3 (repairable); crossing contrast +1.9/+5.0/+6.8 | nalyze_mechanism_full158.py |
 | Repaired combinations 295/308/327; transfer 269/58/26/447; candidate success on the shared 269 (60.7% vs 63.7%, +3.0 [+0.1, +5.9]) | `analyze_repair_transfer.py` |
 
 ### RQ-2, reducer reliability

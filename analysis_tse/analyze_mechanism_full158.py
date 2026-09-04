@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""The evidence-versus-length contrasts on the pre-specified population.
+
+The population is every program whose reduced counterexample preserves the
+failure and is not a copy of the original (158 programs), fixed before any
+outcome was observed, rather than the 46 programs an earlier round happened to
+repair. Rows come from the 40-candidate runs: the 46-program deep run and the
+112-program run that completes the population.
+"""
+import json
+import random
+import statistics as st
+from collections import defaultdict
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+SOURCES = ['validated_deep40.jsonl', 'validated_placebo.jsonl',
+           'validated_full158.jsonl']
+RNG = random.Random(20260904)
+ROWS = [
+    ('ev_none', 'Nothing'),
+    ('ev_input_only', 'The input only'),
+    ('ev_outputs_only', 'The outputs only'),
+    ('ev_placebo', 'Both, digits randomized'),
+    ('ev_full', 'Both (the full counterexample)'),
+    ('len_long_output_matched', 'Both, padded to original-test length'),
+]
+
+
+def key(r):
+    return (r['problem_id'], str(r['submission_id']))
+
+
+def candidate_success(r):
+    versions = r.get('versions') or []
+    if not versions:
+        return None
+    return 100.0 * sum(1 for v in versions if v.get('passed')) / len(versions)
+
+
+def counts(r):
+    versions = r.get('versions') or []
+    if not versions:
+        return None
+    return len(versions), sum(1 for v in versions if v.get('passed'))
+
+
+def pass_at_k(n, c, k):
+    """Unbiased pass@k over n samples of which c pass."""
+    if n - c < k:
+        return 100.0
+    p = 1.0
+    for i in range(k):
+        p *= (n - c - i) / (n - i)
+    return 100.0 * (1.0 - p)
+
+
+def load():
+    by_condition = defaultdict(dict)
+    raw = defaultdict(dict)
+    for name in SOURCES:
+        path = HERE / name
+        if not path.is_file():
+            continue
+        for line in path.read_text(encoding='utf-8').splitlines():
+            if not line.strip():
+                continue
+            r = json.loads(line)
+            if r.get('status') != 'done':
+                continue
+            value = candidate_success(r)
+            if value is None:
+                continue
+            # a re-run appends a second row; the last one wins
+            by_condition[r['condition']][key(r)] = value
+            raw[r['condition']][key(r)] = counts(r)
+    return by_condition, raw
+
+
+def bootstrap(paired, n=10000):
+    by_task = defaultdict(list)
+    for (task, _), diff in paired.items():
+        by_task[task].append(diff)
+    tasks = list(by_task)
+    means = []
+    for _ in range(n):
+        vals = []
+        for _ in tasks:
+            vals.extend(by_task[RNG.choice(tasks)])
+        means.append(sum(vals) / len(vals))
+    means.sort()
+    flat = [d for ds in by_task.values() for d in ds]
+    return st.mean(flat), means[int(0.025 * n)], means[int(0.975 * n)], len(tasks)
+
+
+def contrast(by_condition, treatment, control):
+    a, b = by_condition.get(treatment, {}), by_condition.get(control, {})
+    shared = set(a) & set(b)
+    if not shared:
+        return None
+    return bootstrap({k: a[k] - b[k] for k in shared}), len(shared)
+
+
+def pass_at_k_contrast(raw, treatment, control, k):
+    a, b = raw.get(treatment, {}), raw.get(control, {})
+    shared = set(a) & set(b)
+    if not shared:
+        return None
+    paired = {}
+    for key_ in shared:
+        na, ca = a[key_]
+        nb, cb = b[key_]
+        paired[key_] = pass_at_k(na, ca, k) - pass_at_k(nb, cb, k)
+    return bootstrap(paired), len(shared)
+
+
+def main():
+    by_condition, raw = load()
+    print('cells (programs with a validated 40-candidate run)')
+    for cond, label in ROWS:
+        print(f'  {label:38s} n={len(by_condition.get(cond, {})):4d}')
+
+    print('\npass@1 (mean candidate success) and difference against no evidence')
+    for cond, label in ROWS[:-1]:
+        cells = by_condition.get(cond, {})
+        if not cells:
+            print(f'  {label:38s} not yet available')
+            continue
+        rate = st.mean(cells.values())
+        if cond == 'ev_none':
+            print(f'  {label:38s} {rate:5.1f}%   n/a')
+            continue
+        result = contrast(by_condition, cond, 'ev_none')
+        (mean, lo, hi, T), n = result
+        print(f'  {label:38s} {rate:5.1f}%   {mean:+5.1f} [{lo:+5.1f}, {hi:+5.1f}]  n={n} T={T}')
+
+    cond, label = ROWS[-1]
+    cells = by_condition.get(cond, {})
+    if cells:
+        rate = st.mean(cells.values())
+        (mean, lo, hi, T), n = contrast(by_condition, cond, 'ev_full')
+        print('\ndifference against the full counterexample')
+        print(f'  {label:38s} {rate:5.1f}%   {mean:+5.1f} [{lo:+5.1f}, {hi:+5.1f}]  n={n} T={T}')
+        result = contrast(by_condition, 'ev_placebo', cond)
+        if result:
+            (mean, lo, hi, T), n = result
+            print('\ndigit-randomized at counterexample length against the genuine'
+                  ' counterexample at original-test length')
+            print(f'  candidate success {mean:+.1f} [{lo:+.1f}, {hi:+.1f}]  n={n} T={T}')
+
+    print('\npass@k differences (unbiased over 40 samples)')
+    for treatment, control, label in (
+            ('ev_full', 'ev_none', 'full counterexample vs no evidence'),
+            ('ev_placebo', 'ev_none', 'digit-randomized vs no evidence'),
+            ('ev_full', 'ev_placebo', 'full counterexample vs digit-randomized'),
+            ('ev_placebo', 'len_long_output_matched',
+             'digit-randomized short vs genuine padded')):
+        for k in (5, 10):
+            result = pass_at_k_contrast(raw, treatment, control, k)
+            if not result:
+                continue
+            (mean, lo, hi, T), n = result
+            print(f'  pass@{k:<2d} {label:44s} {mean:+5.1f} [{lo:+5.1f}, {hi:+5.1f}]  n={n}')
+
+
+if __name__ == '__main__':
+    main()

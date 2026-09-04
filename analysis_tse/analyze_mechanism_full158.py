@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-"""The evidence-versus-length contrasts on the pre-specified population.
+"""The evidence-versus-length contrasts of RQ-4.
 
-The population is every program whose reduced counterexample preserves the
-failure and is not a copy of the original (158 programs), fixed before any
-outcome was observed, rather than the 46 programs an earlier round happened to
-repair. Rows come from the 40-candidate runs: the 46-program deep run and the
-112-program run that completes the population.
+Every reduction the pipeline accepts is attempted under all six conditions at 40
+candidates per cell. The analysis set is the programs for which every condition
+yields a usable prompt, so each reported contrast is a difference between the
+table's own rows rather than a pairwise-complete subset of its own.
 """
 import gzip
 import hashlib
@@ -103,9 +102,11 @@ def bootstrap(paired, n=10000):
     return st.mean(flat), means[int(0.025 * n)], means[int(0.975 * n)], len(tasks)
 
 
-def contrast(by_condition, treatment, control):
+def contrast(by_condition, treatment, control, restrict=None):
     a, b = by_condition.get(treatment, {}), by_condition.get(control, {})
     shared = set(a) & set(b)
+    if restrict is not None:
+        shared &= restrict
     if not shared:
         return None
     return bootstrap({k: a[k] - b[k] for k in shared}), len(shared)
@@ -126,9 +127,11 @@ def repairable_programs():
     return out
 
 
-def pass_at_k_contrast(raw, treatment, control, k):
+def pass_at_k_contrast(raw, treatment, control, k, restrict=None):
     a, b = raw.get(treatment, {}), raw.get(control, {})
     shared = set(a) & set(b)
+    if restrict is not None:
+        shared &= restrict
     if not shared:
         return None
     paired = {}
@@ -141,13 +144,20 @@ def pass_at_k_contrast(raw, treatment, control, k):
 
 def main():
     by_condition, raw = load()
-    print('cells (programs with a validated 40-candidate run)')
+    attempted = set()
+    for cond, _ in ROWS:
+        attempted |= set(by_condition.get(cond, {}))
+    analysis = set(by_condition.get('ev_none', {}))
+    for cond, _ in ROWS:
+        analysis &= set(by_condition.get(cond, {}))
+    print(f'cells attempted over {len(attempted)} programs; '
+          f'analysis set (all six cells usable): {len(analysis)}')
     for cond, label in ROWS:
-        print(f'  {label:38s} n={len(by_condition.get(cond, {})):4d}')
+        print(f'  {label:38s} usable {len(by_condition.get(cond, {})):4d}')
 
-    print('\npass@1 (mean candidate success) and difference against no evidence')
+    print('\npass@1 on the analysis set and difference against no evidence')
     for cond, label in ROWS[:-1]:
-        cells = by_condition.get(cond, {})
+        cells = {k: v for k, v in by_condition.get(cond, {}).items() if k in analysis}
         if not cells:
             print(f'  {label:38s} not yet available')
             continue
@@ -155,26 +165,27 @@ def main():
         if cond == 'ev_none':
             print(f'  {label:38s} {rate:5.1f}%   n/a')
             continue
-        result = contrast(by_condition, cond, 'ev_none')
-        (mean, lo, hi, T), n = result
+        (mean, lo, hi, T), n = contrast(by_condition, cond, 'ev_none', analysis)
         print(f'  {label:38s} {rate:5.1f}%   {mean:+5.1f} [{lo:+5.1f}, {hi:+5.1f}]  n={n} T={T}')
 
     cond, label = ROWS[-1]
-    cells = by_condition.get(cond, {})
+    cells = {k: v for k, v in by_condition.get(cond, {}).items() if k in analysis}
     if cells:
         rate = st.mean(cells.values())
-        (mean, lo, hi, T), n = contrast(by_condition, cond, 'ev_full')
+        (mean, lo, hi, T), n = contrast(by_condition, cond, 'ev_full', analysis)
         print('\ndifference against the full counterexample')
         print(f'  {label:38s} {rate:5.1f}%   {mean:+5.1f} [{lo:+5.1f}, {hi:+5.1f}]  n={n} T={T}')
-        result = contrast(by_condition, 'ev_placebo', cond)
-        if result:
-            (mean, lo, hi, T), n = result
-            print('\ndigit-randomized at counterexample length against the genuine'
-                  ' counterexample at original-test length')
-            print(f'  candidate success {mean:+.1f} [{lo:+.1f}, {hi:+.1f}]  n={n} T={T}')
+        (mean, lo, hi, T), n = contrast(by_condition, 'ev_placebo', cond, analysis)
+        print('\ndigit-randomized at counterexample length against the genuine'
+              ' counterexample at original-test length')
+        print(f'  candidate success {mean:+.1f} [{lo:+.1f}, {hi:+.1f}]  n={n} T={T}')
 
     repairable = repairable_programs()
+    # One analysis set: the programs for which every condition yields a usable
+    # prompt. Contrasts on it are differences between the table's own rows.
     population = set(by_condition['ev_none'])
+    for cond, _ in ROWS:
+        population &= set(by_condition.get(cond, {}))
     groups = (('all', population),
               ('repairable', population & repairable),
               ('not repairable', population - repairable))
@@ -192,20 +203,6 @@ def main():
             line += f'  {label} {st.mean(vals):5.2f}% (n={len(vals):3d})' if vals else ''
         print(line)
 
-    # the table: every row on the programs that have all six cells, so the
-    # rows share one denominator per column and can be read against each other
-    common = set(population)
-    for cond, _ in ROWS:
-        common &= set(by_condition.get(cond, {}))
-    print(f'\nmean candidate success on the programs with all six cells (n={len(common)}: '
-          f'repairable {len(common & repairable)}, not {len(common - repairable)})')
-    for cond, plabel in ROWS:
-        cells = by_condition[cond]
-        line = f'  {plabel:38s}'
-        for label, pop in groups:
-            vals = [cells[k] for k in common & pop]
-            line += f'  {label} {st.mean(vals):5.2f}%'
-        print(line)
     print('\ncontrasts by group')
     for treatment, control, label in (
             ('ev_input_only', 'ev_none', 'input only vs nothing'),
@@ -219,7 +216,7 @@ def main():
              'digit-randomized short vs genuine padded')):
         a, b = by_condition.get(treatment, {}), by_condition.get(control, {})
         for glabel, pop in groups:
-            shared = set(a) & set(b) & pop
+            shared = set(a) & set(b) & pop & population
             if len(shared) < 5:
                 continue
             mean, lo, hi, T = bootstrap({k: a[k] - b[k] for k in shared})
@@ -264,7 +261,7 @@ def main():
             ('ev_placebo', 'len_long_output_matched',
              'digit-randomized short vs genuine padded')):
         for k in (5, 10):
-            result = pass_at_k_contrast(raw, treatment, control, k)
+            result = pass_at_k_contrast(raw, treatment, control, k, population)
             if not result:
                 continue
             (mean, lo, hi, T), n = result

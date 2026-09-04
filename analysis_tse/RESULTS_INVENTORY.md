@@ -29,7 +29,7 @@ repository root unless the script's usage line says otherwise.
 | Per-model gains and patch locality | `analyze_model_and_locality.py` |
 | Gain by difficulty, input family, original test size, witness size, and Baseline x Origin | `analyze_gain_by_stratum.py` |
 | Prompt bytes per candidate and per passing patch | `analyze_cost_and_solved_pairs.py` |
-| Mechanism cells over every accepted reduction (190) and the repairable/not split: padded vs full -1.8 (all) / -5.1 (repairable); crossing contrast +1.7/+4.7/+6.6 | `analyze_mechanism_full158.py` |
+| Mechanism cells: 190 accepted reductions attempted, 173 with all six cells (61 repairable / 112 not); padded vs full -1.8 / -5.1; crossing contrast +1.7/+4.7/+6.6 | `analyze_mechanism_full158.py` |
 | Repaired combinations 295/308/327; transfer 269/58/26/447; candidate success on the shared 269 (60.7% vs 63.7%, +3.0 [+0.1, +5.9]) | `analyze_repair_transfer.py` |
 
 ### RQ-2, reducer reliability
@@ -50,7 +50,7 @@ Search behaviour (median failure checks, bytes removed per check, advancing shar
 | Padding to Origin-Test scale | `analyze_deep40_length.py` |
 | Run-to-run reproducibility benchmark (+0.8) | `analyze_true_noise_floor.py` |
 | Matched padding, input side against output side | `analyze_matched_padding.py` |
-| Position and padding-side contrasts at 10 candidates, task-clustered | `analyze_position_and_side.py` |
+| Position and padding-side contrasts, 147 of those programs at 10 candidates, task-clustered | `analyze_position_and_side.py` |
 | Scrambled arm against the full witness; scrambled short against genuine long | `final_placebo_analysis.py` |
 | Token parity of scrambled and real prompts | `parity_check.py` |
 

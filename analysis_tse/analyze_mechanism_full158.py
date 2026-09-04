@@ -7,6 +7,7 @@ outcome was observed, rather than the 46 programs an earlier round happened to
 repair. Rows come from the 40-candidate runs: the 46-program deep run and the
 112-program run that completes the population.
 """
+import gzip
 import json
 import random
 import statistics as st
@@ -14,6 +15,8 @@ from collections import defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+MANIFEST = HERE / 'output/analysis_manifest.jsonl.gz'
+LOCAL_MODEL = 'Qwen2.5-Coder-7B-Instruct'
 SOURCES = ['validated_deep40.jsonl', 'validated_placebo.jsonl',
            'validated_full158.jsonl']
 RNG = random.Random(20260904)
@@ -101,6 +104,21 @@ def contrast(by_condition, treatment, control):
     return bootstrap({k: a[k] - b[k] for k in shared}), len(shared)
 
 
+def repairable_programs():
+    """Programs the local repair model repairs under some RQ-1 prompt.
+
+    The RQ-1 runs are a different sample from the 40-candidate cells analysed
+    here, so splitting on them does not condition on the data being compared.
+    """
+    out = set()
+    with gzip.open(MANIFEST, 'rt', encoding='utf-8') as fh:
+        for line in fh:
+            r = json.loads(line)
+            if r['model'] == LOCAL_MODEL and r['passed']:
+                out.add((r['task'], str(r['submission'])))
+    return out
+
+
 def pass_at_k_contrast(raw, treatment, control, k):
     a, b = raw.get(treatment, {}), raw.get(control, {})
     shared = set(a) & set(b)
@@ -147,6 +165,39 @@ def main():
             print('\ndigit-randomized at counterexample length against the genuine'
                   ' counterexample at original-test length')
             print(f'  candidate success {mean:+.1f} [{lo:+.1f}, {hi:+.1f}]  n={n} T={T}')
+
+    repairable = repairable_programs()
+    population = set(by_condition['ev_none'])
+    groups = (('all', population),
+              ('repairable', population & repairable),
+              ('not repairable', population - repairable))
+    print('\nsplit by whether the local model repairs the program under some RQ-1 prompt')
+    for label, pop in groups[1:]:
+        print(f'  {label:16s} {len(pop):3d} programs')
+    print('\nmean candidate success by group')
+    for cond, plabel in ROWS:
+        cells = by_condition.get(cond, {})
+        if not cells:
+            continue
+        line = f'  {plabel:38s}'
+        for label, pop in groups:
+            vals = [v for k, v in cells.items() if k in pop]
+            line += f'  {label} {st.mean(vals):5.2f}% (n={len(vals):3d})' if vals else ''
+        print(line)
+    print('\ncontrasts by group')
+    for treatment, control, label in (
+            ('ev_full', 'ev_none', 'full counterexample vs nothing'),
+            ('len_long_output_matched', 'ev_full', 'padded vs full counterexample'),
+            ('ev_placebo', 'len_long_output_matched',
+             'digit-randomized short vs genuine padded')):
+        a, b = by_condition.get(treatment, {}), by_condition.get(control, {})
+        for glabel, pop in groups:
+            shared = set(a) & set(b) & pop
+            if len(shared) < 5:
+                continue
+            mean, lo, hi, T = bootstrap({k: a[k] - b[k] for k in shared})
+            print(f'  {label:42s} {glabel:15s} {mean:+5.1f} '
+                  f'[{lo:+5.1f}, {hi:+5.1f}]  n={len(shared):3d} T={T}')
 
     print('\npass@k differences (unbiased over 40 samples)')
     for treatment, control, label in (

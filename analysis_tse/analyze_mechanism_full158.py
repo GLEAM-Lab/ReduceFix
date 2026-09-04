@@ -8,6 +8,7 @@ repair. Rows come from the 40-candidate runs: the 46-program deep run and the
 112-program run that completes the population.
 """
 import gzip
+import hashlib
 import json
 import random
 import statistics as st
@@ -18,7 +19,8 @@ HERE = Path(__file__).resolve().parent
 MANIFEST = HERE / 'output/analysis_manifest.jsonl.gz'
 LOCAL_MODEL = 'Qwen2.5-Coder-7B-Instruct'
 SOURCES = ['validated_deep40.jsonl', 'validated_placebo.jsonl',
-           'validated_full158.jsonl']
+           'validated_full158.jsonl', 'validated_two160.jsonl',
+           'validated_acc190.jsonl']
 RNG = random.Random(20260904)
 ROWS = [
     ('ev_none', 'Nothing'),
@@ -81,15 +83,20 @@ def load():
 
 
 def bootstrap(paired, n=10000):
+    """Task-clustered bootstrap. The resampling stream is seeded from the
+    sorted set of pairs, so every contrast reproduces exactly regardless of
+    call order or dict iteration."""
     by_task = defaultdict(list)
-    for (task, _), diff in paired.items():
+    for (task, sub), diff in sorted(paired.items()):
         by_task[task].append(diff)
-    tasks = list(by_task)
+    tasks = sorted(by_task)
+    seed_material = '|'.join(f'{t}/{s}:{paired[(t, s)]:.6f}' for (t, s) in sorted(paired))
+    rng = random.Random(int(hashlib.sha256(seed_material.encode()).hexdigest()[:16], 16))
     means = []
     for _ in range(n):
         vals = []
         for _ in tasks:
-            vals.extend(by_task[RNG.choice(tasks)])
+            vals.extend(by_task[rng.choice(tasks)])
         means.append(sum(vals) / len(vals))
     means.sort()
     flat = [d for ds in by_task.values() for d in ds]
@@ -184,6 +191,21 @@ def main():
             vals = [v for k, v in cells.items() if k in pop]
             line += f'  {label} {st.mean(vals):5.2f}% (n={len(vals):3d})' if vals else ''
         print(line)
+
+    # the table: every row on the programs that have all six cells, so the
+    # rows share one denominator per column and can be read against each other
+    common = set(population)
+    for cond, _ in ROWS:
+        common &= set(by_condition.get(cond, {}))
+    print(f'\nmean candidate success on the programs with all six cells (n={len(common)}: '
+          f'repairable {len(common & repairable)}, not {len(common - repairable)})')
+    for cond, plabel in ROWS:
+        cells = by_condition[cond]
+        line = f'  {plabel:38s}'
+        for label, pop in groups:
+            vals = [cells[k] for k in common & pop]
+            line += f'  {label} {st.mean(vals):5.2f}%'
+        print(line)
     print('\ncontrasts by group')
     for treatment, control, label in (
             ('ev_input_only', 'ev_none', 'input only vs nothing'),
@@ -203,6 +225,36 @@ def main():
             mean, lo, hi, T = bootstrap({k: a[k] - b[k] for k in shared})
             print(f'  {label:42s} {glabel:15s} {mean:+5.1f} '
                   f'[{lo:+5.1f}, {hi:+5.1f}]  n={len(shared):3d} T={T}')
+
+    print('\ninteraction: contrast on repairable minus contrast on not repairable'
+          ' (task-clustered bootstrap over both groups)')
+    for treatment, control, label in (
+            ('len_long_output_matched', 'ev_full', 'padded vs full counterexample'),
+            ('ev_placebo', 'len_long_output_matched', 'digit-randomized short vs genuine padded')):
+        a, b = by_condition.get(treatment, {}), by_condition.get(control, {})
+        ins = {k: a[k] - b[k] for k in set(a) & set(b) & groups[1][1]}
+        out = {k: a[k] - b[k] for k in set(a) & set(b) & groups[2][1]}
+        by_task = defaultdict(lambda: ([], []))
+        for (t, s), d in sorted(ins.items()):
+            by_task[t][0].append(d)
+        for (t, s), d in sorted(out.items()):
+            by_task[t][1].append(d)
+        tasks = sorted(by_task)
+        seed = int(hashlib.sha256(('interaction:' + label).encode()).hexdigest()[:16], 16)
+        rng = random.Random(seed)
+        draws = []
+        for _ in range(10000):
+            i_vals, o_vals = [], []
+            for _ in tasks:
+                t = rng.choice(tasks)
+                i_vals.extend(by_task[t][0])
+                o_vals.extend(by_task[t][1])
+            if i_vals and o_vals:
+                draws.append(sum(i_vals) / len(i_vals) - sum(o_vals) / len(o_vals))
+        draws.sort()
+        point = st.mean(ins.values()) - st.mean(out.values())
+        print(f'  {label:42s} {point:+5.1f} [{draws[int(0.025 * len(draws))]:+5.1f}, '
+              f'{draws[int(0.975 * len(draws))]:+5.1f}]  n={len(ins)}+{len(out)} T={len(tasks)}')
 
     print('\npass@k differences (unbiased over 40 samples)')
     for treatment, control, label in (
